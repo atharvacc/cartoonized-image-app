@@ -40,8 +40,8 @@ def predict(img, bucket, endpoint_name):
     file_name = datetime.strftime(
         datetime.now(), format="%m-%d-%Y-%H:%M:%S.jpg"
     )
-    body = '{{"url": "https://gan-data.s3.amazonaws.com/{0}"}}'.format(
-        file_name)
+    body = '{{"url": "https://{0}.s3.amazonaws.com/{1}"}}'.format(
+        bucket, file_name)
     up = s3_client.upload_fileobj(
         in_mem_file, Bucket=bucket, Key=file_name, ExtraArgs={
             "ACL": "public-read"}
